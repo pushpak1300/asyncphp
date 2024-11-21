@@ -4,22 +4,19 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
+use React\Stream\ReadableResourceStream;
+use React\Stream\WritableResourceStream;
 
-$n = 1;
-Loop::addPeriodicTimer(1, function () use (&$n) {
-    echo "hello $n\n";
-    $n++;
+$stream = new ReadableResourceStream(STDIN);
+
+$stream->on('data', function ($chunk) {
+    echo strtoupper($chunk);
+});
+$stream->on('end', function () {
+    echo 'END';
 });
 
-// Loop::addPeriodicTimer(5, function () use (&$n) {
-//     Loop::removeSignal(SIGINT, function (int $signal) {
-//         Loop::stop();
-//     });
-// });
 
-Loop::addSignal(SIGINT, function (int $signal) {
-    echo 'Handling interrupt signal' . PHP_EOL;
-    echo "sleeping for 2 seconds\n";
-    sleep(3);
-    echo "done\n";
-});
+// $output = new WritableResourceStream(STDOUT);
+// $output->write('hello!');
+// $output->end();
