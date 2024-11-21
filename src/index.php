@@ -8,15 +8,13 @@ use React\Stream\ReadableResourceStream;
 use React\Stream\WritableResourceStream;
 
 $stream = new ReadableResourceStream(STDIN);
+$output = new WritableResourceStream(STDOUT);
 
-$stream->on('data', function ($chunk) {
-    echo strtoupper($chunk);
+
+$stream->on('data', function ($chunk) use ($output) {
+    $output->write(strtoupper($chunk));
 });
-$stream->on('end', function () {
-    echo 'END';
+
+Loop::addPeriodicTimer(1, function () use ($output) {
+    $output->write('tick' . PHP_EOL);
 });
-
-
-// $output = new WritableResourceStream(STDOUT);
-// $output->write('hello!');
-// $output->end();
