@@ -17,7 +17,8 @@
     "require": {
         "illuminate/support": "^11.33",
         "react/event-loop": "^1.5.0",
-        "react/stream": "^1.4"
+        "react/stream": "^1.4",
+        "react/promise": "^3.2.0"
     }
 ,
 "scripts": {
