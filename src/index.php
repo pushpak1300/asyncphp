@@ -32,12 +32,10 @@ function getAwesomeResultPromise(): PromiseInterface
     return $deferred->promise();
 }
 
-getAwesomeResultPromise()
-    ->then(
-        function ($value) {
-            echo $value;
-        },
-        function (Throwable $reason) {
-            echo $reason->getMessage();
-        }
-    );
+try {
+    $result = React\Async\await(getAwesomeResultPromise());
+    echo $result;
+} catch (Throwable $e) {
+
+}
+
