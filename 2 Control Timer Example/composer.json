@@ -1,0 +1,25 @@
+{
+    "name": "pushpakchhajed/reactive-php",
+    "description": "Demo App for showing PHP reactive capablitites",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ReactivePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pushpak Chhajed",
+            "email": "pushpak1300@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^11.33",
+        "react/event-loop": "^1.5.0"
+    }
+,
+"scripts": {
+    "dev": "php src/index.php"
+}
+}
